@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gerador de Senhas</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+      
+      }
+     
+    input[type="number"] {
+      width: 40px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #042446;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #generatedPassword {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+   }
+  </style>
+   <script>
+    function generateRandomPassword(length) {
+      const charset =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+      let password = "";
+
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset.charAt(randomIndex);
+      }
+
+      return password;
+    }
+
+    function generatePassword() {
+      const passwordLength = parseInt(document.getElementById("passwordLength").value);
+      const newPassword = generateRandomPassword(passwordLength);
+      document.getElementById("generatedPassword").textContent = "Senha gerada: " + newPassword;
+    }
+  </script>
+</head>
+<body>
+  <h1>Gerador de Senhas</h1>
+  <label for="passwordLength">Comprimento da Senha:</label>
+  <input type="number" id="passwordLength" min="1" value="12">
+  <button onclick="generatePassword()">Gerar Senha</button>
+  <p id="generatedPassword"></p>
+</body>
+</html>
+
